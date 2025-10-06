@@ -45,9 +45,26 @@ pytest
 
 ### Приклади команд
 
-1) Детекція+трекінг (ByteTrack) та експорт у XML, з опційною візуалізацією:
+1) 
+1.1) Детекція+трекінг (ByteTrack) та експорт у XML, з опційною візуалізацією:
 ```bash
 cvat-gen detect-track --model yolov8s-visdrone.pt --video example.mp4 --out-xml tracks.xml --save-video out_vis.mp4
+```
+
+1.2) Детекція з SAHI:
+```bash
+cvat-gen detect-track --model yolov8s-visdrone.pt --video example.mp4 --out-xml tracks_sahi.xml --use-sahi --save-video out_vis_sahi.mp4
+```
+
+Параметри SAHI читаються з `.env` з префіксом `SAHI_` 
+```bash
+SAHI_SLICE_HEIGHT=640
+SAHI_SLICE_WIDTH=640
+SAHI_OVERLAP_HEIGHT_RATIO=0.2
+SAHI_OVERLAP_WIDTH_RATIO=0.2
+SAHI_CONF=0.25
+SAHI_IOU_THRESHOLD=0.3
+SAHI_MAX_AGE=30
 ```
 
 2) Візуалізація XML на відео:
